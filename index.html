@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="full" lang="en">
+<!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>On Air!</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/full.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<script>
+
+// Mouseover/ Click sound effect- by JavaScript Kit (www.javascriptkit.com)
+// Visit JavaScript Kit at http://www.javascriptkit.com/ for full source code
+
+//** Usage: Instantiate script by calling: var uniquevar=createsoundbite("soundfile1", "fallbackfile2", "fallebacksound3", etc)
+//** Call: uniquevar.playclip() to play sound
+
+var html5_audiotypes={ //define list of audio file extensions and their associated audio types. Add to it if your specified audio file isn't on this list:
+    "mp3": "audio/mpeg",
+    "mp4": "audio/mp4",
+    "ogg": "audio/ogg",
+    "wav": "audio/wav"
+}
+
+function createsoundbite(sound){
+    var html5audio=document.createElement('audio')
+    if (html5audio.canPlayType){ //check support for HTML5 audio
+        for (var i=0; i<arguments.length; i++){
+            var sourceel=document.createElement('source')
+            sourceel.setAttribute('src', arguments[i])
+            if (arguments[i].match(/\.(\w+)$/i))
+                sourceel.setAttribute('type', html5_audiotypes[RegExp.$1])
+            html5audio.appendChild(sourceel)
+        }
+        html5audio.load()
+        html5audio.playclip=function(){
+            html5audio.pause()
+            html5audio.currentTime=0
+            html5audio.play()
+        }
+        return html5audio
+    }
+    else{
+        return {playclip:function(){throw new Error("Your browser doesn't support HTML5 audio unfortunately")}}
+    }
+}
+
+//Initialize two sound clips with 1 fallback file each:
+
+var clicksound=createsoundbite("light.wav", "click.mp3")
+
+</script>
+
+</head>
+
+<body style="overflow: hidden">
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#myModal">WTF?</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="toggle_visibility('foo');clicksound.playclip()" >on/off</a>
+
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+
+
+    <!-- Put your page content here! -->
+
+<div>
+<img src="http://i.imgur.com/mS6rg7A.png" id="foo"/>
+<div/>
+
+
+
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">WTF is this shit?</h4>
+      </div>
+      <div class="modal-body">
+        Let me answer your beautiful question by parts.<br>
+        <ol><br>
+        <li><strong>What is this?</strong> An amazing On Air sign. The app you were waiting for.</li><br>
+        <li><strong>Who the hell needs this shit?</strong> Everyone. More importantly super low budget radios, and (like in my case) a very loud digital agancy that needed a visual cue to be silent while someone is in call with a client.</li><br>
+        <li><strong>Why does it look like it was designed by a 5 years old?</strong> <a href="http://twitter.com/huemula">@huemula</a> said she was going to design it. So, talk to her, it's not my fault.</li><br>
+        <li><strong>Why did you build this piece of crap?</strong> Because building crappy sites is much easier than building good ones. And I don't know how to code.</li><br>
+        </ol>
+        Thanks!
+
+        <br><a href="http://twitter.com/tomicrom">@tomicrom</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Oh, OK. I understand now.</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+        <!--
+            function toggle_visibility(id) {
+               var e = document.getElementById(id);
+               if(e.style.display == 'block')
+                  e.style.display = 'none';
+               else
+                  e.style.display = 'block';
+            }
+        //-->
+        </script>
+
+
+</body>
+
+</html>
